@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Bengali:wght@400;600&family=Noto+Sans+Telugu:wght@400;600&family=Noto+Sans+Kannada:wght@400;600&display=swap');
+
+:root {
+  /* Brand palette — warm saffron + deep ink + fresh mint */
+  --color-primary:       #F4722B;   /* saffron — energy, India */
+  --color-primary-light: #FFF0E8;
+  --color-primary-dark:  #C45518;
+
+  --color-success:       #2ECC71;
+  --color-success-light: #EAFAF1;
+  --color-danger:        #E74C3C;
+  --color-danger-light:  #FDEDEC;
+  --color-warning:       #F39C12;
+  --color-warning-light: #FEF9E7;
+
+  --color-ink:           #1A1A2E;   /* deep navy-black */
+  --color-ink-muted:     #6B7280;
+  --color-ink-faint:     #9CA3AF;
+
+  --color-surface:       #FFFFFF;
+  --color-bg:            #F8F7F4;   /* off-white, warm */
+  --color-border:        #E5E7EB;
+  --color-border-active: #F4722B;
+
+  /* Script display colours per language */
+  --script-hindi:        #FF6B6B;
+  --script-bengali:      #4ECDC4;
+  --script-marathi:      #45B7D1;
+  --script-telugu:       #96CEB4;
+  --script-kannada:      #DDA0DD;
+
+  /* Language card gradients */
+  --grad-hindi:    linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+  --grad-bengali:  linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+  --grad-marathi:  linear-gradient(135deg, #45B7D1 0%, #2980B9 100%);
+  --grad-telugu:   linear-gradient(135deg, #96CEB4 0%, #4CAF79 100%);
+  --grad-kannada:  linear-gradient(135deg, #DDA0DD 0%, #9B59B6 100%);
+
+  /* Typography */
+  --font-ui:      'Nunito', sans-serif;
+  --font-devanagari: 'Noto Sans Devanagari', sans-serif;
+  --font-bengali: 'Noto Sans Bengali', sans-serif;
+  --font-telugu:  'Noto Sans Telugu', sans-serif;
+  --font-kannada: 'Noto Sans Kannada', sans-serif;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Radii */
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.10), 0 2px 4px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.08);
+
+  /* Transitions */
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font-ui);
+  background: var(--color-bg);
+  color: var(--color-ink);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { min-height: 100vh; display: flex; flex-direction: column; }
+
+button {
+  font-family: var(--font-ui);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+a { text-decoration: none; color: inherit; }
+
+.script-text {
+  font-size: 0.85em;
+  opacity: 0.65;
+  letter-spacing: 0.02em;
+}

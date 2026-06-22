@@ -1,0 +1,102 @@
+.results-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  padding: var(--space-6);
+}
+
+.results-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10) var(--space-8);
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  animation: popIn var(--duration-slow) var(--ease-bounce);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.results-emoji {
+  font-size: 64px;
+  line-height: 1;
+  animation: bounce 0.6s var(--ease-bounce) 0.2s both;
+}
+
+@keyframes bounce {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+.results-rating {
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--color-ink);
+  letter-spacing: -0.5px;
+}
+
+.results-lesson {
+  font-size: 14px;
+  color: var(--color-ink-muted);
+}
+
+.results-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  background: var(--color-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  width: 100%;
+  margin: var(--space-2) 0;
+}
+
+.rstat { flex: 1; display: flex; flex-direction: column; align-items: center; gap: var(--space-1); }
+.rstat-val { font-size: 28px; font-weight: 900; color: var(--color-ink); line-height: 1; }
+.rstat-label { font-size: 11px; font-weight: 700; color: var(--color-ink-faint); text-transform: uppercase; letter-spacing: 0.5px; }
+.rstat-divider { width: 1px; height: 40px; background: var(--color-border); flex-shrink: 0; }
+
+.results-native {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+.results-native-text {
+  font-size: 22px;
+  color: var(--color-primary);
+  opacity: 0.8;
+}
+.results-lang-name {
+  font-size: 14px;
+  color: var(--color-ink-muted);
+  font-weight: 600;
+}
+
+.results-continue-btn {
+  background: var(--color-primary);
+  color: white;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: 800;
+  padding: var(--space-4) var(--space-10);
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-bounce);
+  margin-top: var(--space-2);
+  width: 100%;
+}
+.results-continue-btn:hover {
+  background: var(--color-primary-dark);
+  transform: scale(1.02);
+}

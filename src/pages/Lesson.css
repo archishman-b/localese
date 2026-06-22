@@ -1,0 +1,173 @@
+.lesson-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  transition: background var(--duration-fast);
+}
+
+.lesson-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 18px;
+  color: var(--color-ink-muted);
+}
+
+/* Top bar */
+.lesson-topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.exit-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  font-size: 14px;
+  color: var(--color-ink-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-fast);
+}
+.exit-btn:hover { background: var(--color-danger-light); color: var(--color-danger); border-color: var(--color-danger); }
+
+.lesson-progressbar {
+  flex: 1;
+  height: 10px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.lesson-progressfill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width var(--duration-normal) var(--ease-smooth);
+}
+
+.hearts-display {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.heart { font-size: 16px; transition: filter var(--duration-fast), opacity var(--duration-fast); }
+.heart-lost { filter: grayscale(1); opacity: 0.3; }
+
+/* Exercise area */
+.exercise-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-10) var(--space-6) var(--space-8);
+  max-width: 640px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.exercise-counter {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--space-6);
+  align-self: flex-end;
+}
+
+/* Feedback bar */
+.feedback-bar {
+  padding: var(--space-5) var(--space-6);
+  border-top: 2px solid transparent;
+  animation: slideUp var(--duration-normal) var(--ease-bounce);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.feedback-bar-correct {
+  background: var(--color-success-light);
+  border-top-color: var(--color-success);
+}
+.feedback-bar-wrong {
+  background: var(--color-danger-light);
+  border-top-color: var(--color-danger);
+}
+
+.feedback-content {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.feedback-message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.feedback-icon {
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+.feedback-bar-correct .feedback-icon { color: var(--color-success); }
+.feedback-bar-wrong .feedback-icon { color: var(--color-danger); }
+
+.feedback-text {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--color-ink);
+  margin-bottom: 2px;
+}
+
+.feedback-hint {
+  font-size: 13px;
+  color: var(--color-ink-muted);
+}
+
+.feedback-native {
+  font-family: var(--font-devanagari);
+  opacity: 0.7;
+}
+
+.continue-btn {
+  background: var(--color-primary);
+  color: white;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 800;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-bounce),
+              background var(--duration-fast);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.continue-btn:hover { background: var(--color-primary-dark); transform: scale(1.03); }
+.feedback-bar-correct .continue-btn { background: var(--color-success); }
+.feedback-bar-correct .continue-btn:hover { background: #27ae60; }
+
+@media (max-width: 600px) {
+  .exercise-area { padding: var(--space-6) var(--space-4); }
+  .feedback-content { flex-direction: column; align-items: stretch; }
+  .continue-btn { text-align: center; padding: var(--space-4); }
+}

@@ -1,0 +1,180 @@
+.learn { min-height: 100vh; display: flex; flex-direction: column; }
+
+.learn-header {
+  padding: var(--space-6);
+  color: white;
+  position: relative;
+}
+
+.back-btn {
+  color: rgba(255,255,255,0.85);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  border-radius: var(--radius-full);
+  padding: var(--space-1) var(--space-3);
+  cursor: pointer;
+  transition: background var(--duration-fast);
+}
+.back-btn:hover { background: rgba(255,255,255,0.25); }
+
+.learn-header-content { margin-bottom: var(--space-5); }
+
+.learn-script {
+  font-size: 20px;
+  opacity: 0.8;
+  margin-bottom: var(--space-1);
+}
+
+.learn-lang-name {
+  font-size: 36px;
+  font-weight: 900;
+  color: white;
+  letter-spacing: -1px;
+  margin-bottom: var(--space-1);
+}
+
+.learn-context {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.learn-header-stats {
+  display: flex;
+  gap: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.hstat { display: flex; flex-direction: column; align-items: flex-start; }
+.hstat-val { font-size: 22px; font-weight: 900; color: white; line-height: 1; }
+.hstat-label { font-size: 11px; color: rgba(255,255,255,0.65); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.learn-progress-bar {
+  height: 6px;
+  background: rgba(255,255,255,0.25);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.learn-progress-fill {
+  height: 100%;
+  background: white;
+  border-radius: var(--radius-full);
+  transition: width var(--duration-slow) var(--ease-smooth);
+}
+
+/* Main content */
+.learn-main {
+  flex: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+  padding: var(--space-8) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* Unit block */
+.unit-block {}
+
+.unit-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border: 1px solid var(--color-border);
+  border-bottom: none;
+}
+
+.unit-header.unit-done {
+  background: var(--color-success-light);
+  border-color: rgba(46, 204, 113, 0.3);
+}
+
+.unit-emoji { font-size: 28px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+
+.unit-meta { flex: 1; }
+.unit-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-primary);
+  margin-bottom: var(--space-1);
+}
+.unit-title { font-size: 20px; font-weight: 800; color: var(--color-ink); margin-bottom: 2px; }
+.unit-context { font-size: 13px; color: var(--color-ink-muted); }
+
+.unit-check {
+  width: 28px;
+  height: 28px;
+  background: var(--color-success);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+/* Lessons list */
+.lessons-list {
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  overflow: hidden;
+}
+
+.lesson-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-surface);
+  border: none;
+  border-top: 1px solid var(--color-border);
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--duration-fast);
+}
+
+.lesson-row:hover:not(.lesson-locked) { background: var(--color-bg); }
+.lesson-row:first-child { border-top: none; }
+.lesson-row.lesson-done { background: var(--color-success-light); }
+.lesson-row.lesson-locked { opacity: 0.5; cursor: not-allowed; }
+
+.lesson-icon { font-size: 22px; flex-shrink: 0; width: 28px; text-align: center; }
+
+.lesson-meta { flex: 1; }
+.lesson-title { font-size: 15px; font-weight: 700; color: var(--color-ink); margin-bottom: 2px; }
+.lesson-hook { font-size: 12px; color: var(--color-ink-muted); }
+
+.badge-done {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-success);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-start {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+@media (max-width: 600px) {
+  .learn-main { padding: var(--space-5) var(--space-3); }
+  .learn-lang-name { font-size: 28px; }
+}
