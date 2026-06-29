@@ -1,0 +1,330 @@
+/* ── Shared reference page wrapper ──────────────────────────────────────── */
+.reference-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 64px; /* space for bottom nav */
+}
+
+/* ── Back button (reused from other pages) ───────────────────────────────── */
+.back-btn {
+  background: rgba(255,255,255,0.25);
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Reference Home ──────────────────────────────────────────────────────── */
+.ref-home-view {
+  flex: 1;
+}
+
+.ref-home-header {
+  padding: 2rem 1.25rem 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  background: white;
+}
+
+.ref-home-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.ref-home-icon {
+  font-size: 1.75rem;
+}
+
+.ref-home-title {
+  font-family: var(--font-ui);
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.ref-home-sub {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: #888;
+  margin: 0;
+}
+
+.ref-lang-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  padding: 1.25rem;
+}
+
+.ref-lang-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  padding: 1rem;
+  border-radius: 16px;
+  background: var(--ref-lang-gradient, #f0f0f0);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.ref-lang-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.ref-lang-card-script {
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.ref-lang-card-name {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.ref-lang-card-count {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(26, 26, 46, 0.6);
+}
+
+/* ── Language Reference (category grid) ──────────────────────────────────── */
+.ref-lang-view {
+  flex: 1;
+}
+
+.ref-lang-header {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.25rem 1.5rem;
+}
+
+.ref-lang-header-content {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.ref-lang-script {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.ref-lang-name {
+  font-family: var(--font-ui);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: white;
+  margin: 0 0 0.25rem;
+}
+
+.ref-lang-sub {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.8);
+  margin: 0;
+}
+
+.ref-categories-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  padding: 1.25rem;
+}
+
+.ref-cat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1rem 0.75rem;
+  border-radius: 16px;
+  background: white;
+  border: 1.5px solid #eee;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+
+.ref-cat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  border-color: var(--color-primary);
+}
+
+.ref-cat-emoji {
+  font-size: 1.5rem;
+}
+
+.ref-cat-title {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  line-height: 1.2;
+}
+
+.ref-cat-count {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #999;
+}
+
+/* ── Category Card Stack ──────────────────────────────────────────────────── */
+.ref-cards-view {
+  flex: 1;
+}
+
+.ref-cards-header {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.25rem 1.5rem;
+}
+
+.ref-cards-header-content {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.ref-cards-emoji {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.ref-cards-title {
+  font-family: var(--font-ui);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: white;
+  margin: 0 0 0.25rem;
+}
+
+.ref-cards-lang {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.8);
+  margin: 0;
+}
+
+.ref-cards-list {
+  padding: 1rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ref-vocab-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  border: 1.5px solid #eee;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.rvc-transliteration {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  letter-spacing: 0.01em;
+}
+
+.rvc-native {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.rvc-meaning {
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #666;
+  margin-top: 0.1rem;
+}
+
+/* ── Bottom navigation ────────────────────────────────────────────────────── */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: white;
+  border-top: 1.5px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  z-index: 100;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.bnav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  height: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-radius: 0;
+}
+
+.bnav-item:hover {
+  background: #f8f7f4;
+}
+
+.bnav-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  filter: grayscale(1) opacity(0.5);
+  transition: filter 0.15s;
+}
+
+.bnav-label {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.15s;
+}
+
+.bnav-active .bnav-icon {
+  filter: none;
+}
+
+.bnav-active .bnav-label {
+  color: var(--color-primary);
+}

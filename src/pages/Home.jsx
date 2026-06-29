@@ -69,7 +69,7 @@ export default function Home() {
                 </div>
                 <div className="lang-card-footer">
                   <span className="lang-tagline">{lang.tagline}</span>
-                  <span className="lang-units">{lang.units.length} units</span>
+                  <span className="lang-units">{lang.stages.flatMap(s => s.units).length} units</span>
                 </div>
               </button>
             );

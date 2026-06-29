@@ -1,7 +1,8 @@
 import { hindi } from './languages/hindi.js';
 import { telugu } from './languages/telugu.js';
 import { kannada } from './languages/kannada.js';
-import { bengali, marathi } from './languages/bengali-marathi.js';
+import { bengali } from './languages/bengali.js';
+import { marathi } from './languages/marathi.js';
 
 export const LANGUAGES = {
   hindi,

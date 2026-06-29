@@ -1,0 +1,230 @@
+/* ── Category grid ───────────────────────────────────────────────────────── */
+.ref-grid-view {
+  padding-bottom: 2rem;
+}
+
+.ref-grid-intro {
+  padding: 1rem 1.25rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ref-grid-script {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.ref-grid-sub {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  color: #999;
+  margin: 0;
+}
+
+.ref-cat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+}
+
+.ref-cat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.875rem 0.5rem;
+  border-radius: 14px;
+  background: white;
+  border: 1.5px solid #eee;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ref-cat-card:active {
+  transform: scale(0.96);
+}
+
+.ref-cat-emoji {
+  font-size: 1.4rem;
+}
+
+.ref-cat-title {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  line-height: 1.2;
+}
+
+.ref-cat-count {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #bbb;
+}
+
+/* ── Category card stack ─────────────────────────────────────────────────── */
+.ref-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.ref-stack-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1.5px solid #eee;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.ref-back-btn {
+  background: #f5f4f1;
+  border: none;
+  border-radius: 8px;
+  padding: 0.35rem 0.65rem;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  cursor: pointer;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ref-stack-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.ref-stack-emoji {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.ref-stack-title {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ref-stack-count {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  color: #aaa;
+  flex-shrink: 0;
+}
+
+.ref-stack-list {
+  padding: 0.75rem 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* ── Vocab card (Level 1) ────────────────────────────────────────────────── */
+.rvc-card {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  background: white;
+  border-radius: 14px;
+  border: 1.5px solid #eee;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  overflow: hidden;
+  transition: transform 0.1s, box-shadow 0.1s;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+
+.rvc-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+/* Left panel */
+.rvc-left {
+  flex: 0 0 52%;
+  padding: 0.875rem 0.75rem 0.875rem 1rem;
+  border-right: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.rvc-transliteration {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1.2;
+}
+
+.rvc-native {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.rvc-meaning {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: #777;
+  margin-top: 0.1rem;
+}
+
+/* Right panel */
+.rvc-right {
+  flex: 1;
+  padding: 0.625rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.rvc-form-item {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #666;
+  line-height: 1.3;
+  padding: 0.15rem 0.3rem;
+  border-radius: 4px;
+  background: #f9f8f6;
+}
+
+/* Tap chevron */
+.rvc-tap-hint {
+  position: absolute;
+  right: 0.625rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: #ccc;
+  pointer-events: none;
+}
+
+/* ── No data fallback ────────────────────────────────────────────────────── */
+.ref-no-data {
+  padding: 2rem;
+  text-align: center;
+  color: #999;
+  font-family: var(--font-ui);
+}

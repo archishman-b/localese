@@ -1,0 +1,77 @@
+.streak-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  border: 1.5px solid #eee;
+  border-radius: 16px;
+  padding: 0.5rem 0.875rem;
+  margin: 0 1rem 1rem;
+}
+
+.streak-pill,
+.xp-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.streak-icon,
+.xp-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.streak-value,
+.xp-value {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.streak-label,
+.xp-label {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.streak-goal {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.goal-done,
+.goal-pending {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.goal-check {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #22c55e;
+}
+
+.goal-ring {
+  font-size: 0.85rem;
+  color: #d1d5db;
+}
+
+.goal-text {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #666;
+}
+
+.goal-done .goal-text {
+  color: #16a34a;
+}
