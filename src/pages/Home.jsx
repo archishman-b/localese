@@ -1,11 +1,11 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { LANGUAGE_LIST } from '../data/index.js';
 import { useStore } from '../store/index.js';
 import './Home.css';
 
 export default function Home() {
   const navigate = useNavigate();
-  const { xp, streak, setActiveLanguage, getCompletedCount } = useStore();
+  const { setActiveLanguage, getCompletedCount } = useStore();
 
   const handleSelectLanguage = (lang) => {
     setActiveLanguage(lang.id);
@@ -16,20 +16,8 @@ export default function Home() {
     <div className="home">
       <header className="home-header">
         <div className="home-logo">
-          <span className="logo-icon">भ</span>
-          <span className="logo-text">Bhasha</span>
-        </div>
-        <div className="home-stats">
-          {streak > 0 && (
-            <div className="stat-chip">
-              <span>🔥</span>
-              <span>{streak} day streak</span>
-            </div>
-          )}
-          <div className="stat-chip">
-            <span>⚡</span>
-            <span>{xp} XP</span>
-          </div>
+          <img src="/icon.png" alt="Localese" className="logo-icon-img" />
+          <span className="logo-text">Localese</span>
         </div>
       </header>
 
@@ -82,6 +70,12 @@ export default function Home() {
             <strong>Designed for the urban migrant.</strong> Whether you've just moved to Hyderabad, Bengaluru, or Mumbai — learn what actually matters: autos, food, numbers, small talk.
           </p>
         </div>
+
+        <footer className="home-footer">
+          <Link to="/privacy" className="home-footer-link">Privacy Policy</Link>
+          <span className="home-footer-sep">·</span>
+          <span className="home-footer-copy">© 2026 Localese</span>
+        </footer>
       </main>
     </div>
   );

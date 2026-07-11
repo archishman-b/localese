@@ -7,6 +7,7 @@ import ExerciseMCQ from '../components/ExerciseMCQ.jsx';
 import ExerciseWordBank from '../components/ExerciseWordBank.jsx';
 import ExerciseTranslate from '../components/ExerciseTranslate.jsx';
 import ExerciseScenarioMCQ from '../components/ExerciseScenarioMCQ.jsx';
+import ExerciseMatchPairs from '../components/ExerciseMatchPairs.jsx';
 import Results from '../components/Results.jsx';
 import './Lesson.css';
 
@@ -49,7 +50,7 @@ function PhaseTransition({ phase, onContinue }) {
     [PHASES.QUIZ]: {
       emoji: '⚡',
       heading: 'Practice done!',
-      sub: 'Time for the real quiz. Hearts are back on.',
+      sub: 'Time for the real quiz. Let\'s see what you remember.',
       btn: 'Start quiz',
     },
   };
@@ -70,6 +71,12 @@ export default function Lesson() {
   const navigate = useNavigate();
   const lang = LANGUAGES[langId];
   const { session, startSession, answerExercise, nextExercise, completeSession, clearSession } = useStore();
+  const isPremium = true; // Free launch — all stages unlocked
+
+  // Find the stage this lesson belongs to — used for premium gate
+  const lessonStage = lang?.stages.find(s =>
+    s.units.some(u => u.lessons.some(l => l.id === lessonId))
+  );
 
   const [phase, setPhase] = useState(PHASES.TEACH);
   const [showTransition, setShowTransition] = useState(false);
@@ -90,6 +97,12 @@ export default function Lesson() {
       setShowTransition(false);
     }
   }, [langId, lessonId]);
+
+  // Premium gate: redirect if trying to access a gated stage directly
+  if (lang && lessonStage && lessonStage.order > 1 && !isPremium) {
+    navigate(`/learn/${langId}`, { replace: true });
+    return null;
+  }
 
   if (!lang || !lesson || !session) return <div className="lesson-loading">Loading...</div>;
 
@@ -179,11 +192,6 @@ export default function Lesson() {
       <div className="lesson-progressbar">
         <div className="lesson-progressfill" style={{ width: `${progressPct}%` }} />
       </div>
-      <div className="hearts-display">
-        {[...Array(5)].map((_, i) => (
-          <span key={i} className={`heart ${i >= session.hearts ? 'heart-lost' : ''}`}>❤️</span>
-        ))}
-      </div>
     </div>
   );
 
@@ -208,7 +216,7 @@ export default function Lesson() {
 
         {/* ── TEACH ── */}
         {phase === PHASES.TEACH && (
-          <Flashcard vocab={lesson.vocab} onComplete={handleTeachComplete} />
+          <Flashcard vocab={lesson.vocab} onComplete={handleTeachComplete} langId={langId} />
         )}
 
         {/* ── GUIDED / QUIZ ── */}
@@ -225,6 +233,7 @@ export default function Lesson() {
                 onAnswer={handleAnswer}
                 feedback={feedback}
                 selectedAnswer={selectedAnswer}
+                langId={langId}
               />
             )}
             {exercise.type === 'scenario-mcq' && (
@@ -233,6 +242,7 @@ export default function Lesson() {
                 onAnswer={handleAnswer}
                 feedback={feedback}
                 selectedAnswer={selectedAnswer}
+                langId={langId}
               />
             )}
             {exercise.type === 'wordbank' && (
@@ -240,6 +250,7 @@ export default function Lesson() {
                 exercise={exercise}
                 onAnswer={handleAnswer}
                 feedback={feedback}
+                langId={langId}
               />
             )}
             {exercise.type === 'translate' && (
@@ -248,6 +259,15 @@ export default function Lesson() {
                 onAnswer={handleAnswer}
                 feedback={feedback}
                 selectedAnswer={selectedAnswer}
+                langId={langId}
+              />
+            )}
+            {exercise.type === 'match-pairs' && (
+              <ExerciseMatchPairs
+                exercise={exercise}
+                onAnswer={handleAnswer}
+                feedback={feedback}
+                langId={langId}
               />
             )}
           </>
@@ -269,14 +289,18 @@ export default function Lesson() {
                   <span className="feedback-icon">✗</span>
                   <div>
                     <div className="feedback-text">
-                      {isGuided ? "Not quite — here's the answer" : 'Not quite'}
+                      {exercise.type === 'match-pairs'
+                        ? 'Good effort — some pairs were off'
+                        : isGuided ? "Not quite — here's the answer" : 'Not quite'}
                     </div>
-                    <div className="feedback-hint">
-                      Answer: <strong>{Array.isArray(exercise.correct) ? exercise.correct.join(' ') : exercise.correct}</strong>
-                      {exercise.nativeHint && (
-                        <span className="feedback-native"> · {exercise.nativeHint}</span>
-                      )}
-                    </div>
+                    {exercise.correct && (
+                      <div className="feedback-hint">
+                        Answer: <strong>{Array.isArray(exercise.correct) ? exercise.correct.join(' ') : exercise.correct}</strong>
+                        {exercise.nativeHint && (
+                          <span className="feedback-native"> · {exercise.nativeHint}</span>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </>
               )}

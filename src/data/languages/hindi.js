@@ -46,6 +46,12 @@ export const hindi = {
                 { id: "e6", type: "translate", question: "Translate: 'please'", options: ["haan", "nahi", "kripaya", "maafi"], correct: "kripaya", nativeHint: "कृपया" },
                 { id: "e7", type: "wordbank", question: "Build the phrase: 'Yes please'", words: ["haan", "kripaya", "nahi", "shukriya"], correct: ["haan", "kripaya"], nativeHint: "हाँ, कृपया" },
                 { id: "e8", type: "mcq", question: "What does 'nahi' mean?", options: ["yes", "please", "no", "sorry"], correct: "no", nativeHint: "नहीं" },
+                { id: "e9", type: "match-pairs", question: "Match each word to its meaning", pairs: [
+                  { word: "haan", native: "हाँ", meaning: "yes" },
+                  { word: "nahi", native: "नहीं", meaning: "no" },
+                  { word: "shukriya", native: "शुक्रिया", meaning: "thank you" },
+                  { word: "maafi", native: "माफ़ी", meaning: "sorry" },
+                ]},
               ],
             },
             {
@@ -67,6 +73,12 @@ export const hindi = {
                 { id: "e4", type: "mcq", question: "You're leaving a colleague's desk. You say:", options: ["namaste", "theek hoon", "alvida", "haan"], correct: "alvida", nativeHint: "अलविदा" },
                 { id: "e5", type: "translate", question: "Translate: 'see you again'", options: ["alvida", "phir milenge", "namaste", "theek hoon"], correct: "phir milenge", nativeHint: "फिर मिलेंगे" },
                 { id: "e6", type: "wordbank", question: "Build the greeting: 'Hello, how are you?'", words: ["namaste", "aap kaisi hain", "theek hoon", "alvida"], correct: ["namaste", "aap kaisi hain"], nativeHint: "नमस्ते, आप कैसी हैं?" },
+                { id: "e7", type: "match-pairs", question: "Match each greeting to its meaning", pairs: [
+                  { word: "namaste", native: "नमस्ते", meaning: "hello" },
+                  { word: "theek hoon", native: "ठीक हूँ", meaning: "I'm fine" },
+                  { word: "alvida", native: "अलविदा", meaning: "goodbye" },
+                  { word: "phir milenge", native: "फिर मिलेंगे", meaning: "see you again" },
+                ]},
               ],
             },
             {

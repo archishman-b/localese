@@ -36,6 +36,13 @@
   font-family: var(--font-devanagari);
 }
 
+.logo-icon-img {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
 .logo-text {
   font-size: 22px;
   font-weight: 800;
@@ -229,6 +236,34 @@
 .home-mission strong {
   color: var(--color-ink);
   font-weight: 700;
+}
+
+.home-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem 0 0.5rem;
+}
+
+.home-footer-link {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: #aaa;
+  text-decoration: none;
+}
+
+.home-footer-link:hover { color: #888; text-decoration: underline; }
+
+.home-footer-sep {
+  font-size: 0.75rem;
+  color: #ccc;
+}
+
+.home-footer-copy {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: #ccc;
 }
 
 @media (max-width: 600px) {

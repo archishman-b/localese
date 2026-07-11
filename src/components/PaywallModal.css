@@ -1,0 +1,267 @@
+/* ── Backdrop ─────────────────────────────────────────────────────────────── */
+.pw-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 300;
+  display: flex;
+  align-items: flex-end;
+  animation: pw-fade 0.2s ease;
+}
+
+@keyframes pw-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Bottom sheet ─────────────────────────────────────────────────────────── */
+.pw-sheet {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--color-bg, #F8F7F4);
+  border-radius: 24px 24px 0 0;
+  padding-bottom: env(safe-area-inset-bottom, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  animation: pw-slide 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  transition: transform 0.15s ease;
+  will-change: transform;
+  max-height: 92vh;
+  overflow-y: auto;
+}
+
+@keyframes pw-slide {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+/* ── Handle ───────────────────────────────────────────────────────────────── */
+.pw-handle {
+  width: 40px;
+  height: 4px;
+  background: #d1d5db;
+  border-radius: 2px;
+  margin: 12px auto 0;
+  flex-shrink: 0;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+.pw-header {
+  text-align: center;
+  padding: 1rem 1.5rem 0.75rem;
+}
+
+.pw-lock-icon {
+  font-size: 2.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.pw-title {
+  font-family: var(--font-ui);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.3px;
+}
+
+.pw-subtitle {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: #777;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Features ─────────────────────────────────────────────────────────────── */
+.pw-features {
+  list-style: none;
+  margin: 0.75rem 1.25rem;
+  padding: 0;
+  background: white;
+  border-radius: 14px;
+  border: 1.5px solid #eee;
+  overflow: hidden;
+}
+
+.pw-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.pw-feature:last-child {
+  border-bottom: none;
+}
+
+.pw-feature-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  width: 1.5rem;
+  text-align: center;
+}
+
+.pw-feature-text {
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #444;
+  line-height: 1.3;
+}
+
+/* ── Plans ────────────────────────────────────────────────────────────────── */
+.pw-plans {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0 1.25rem;
+  margin-bottom: 0.875rem;
+}
+
+.pw-plan {
+  flex: 1;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 0.875rem 0.625rem;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  transition: border-color 0.15s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pw-plan:active {
+  transform: scale(0.97);
+}
+
+.pw-plan--recommended {
+  border-color: var(--color-primary, #E86A3A);
+  box-shadow: 0 0 0 3px rgba(232, 106, 58, 0.12);
+}
+
+.pw-plan-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary, #E86A3A);
+  color: white;
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+}
+
+.pw-plan-label {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.pw-plan-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 1px;
+  margin-bottom: 0.15rem;
+}
+
+.pw-plan-amount {
+  font-family: var(--font-ui);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.pw-plan-per {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: #888;
+  font-weight: 500;
+}
+
+.pw-plan-sub {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  color: #aaa;
+}
+
+/* ── CTA ──────────────────────────────────────────────────────────────────── */
+.pw-cta {
+  margin: 0 1.25rem;
+  width: calc(100% - 2.5rem);
+  padding: 0.9rem;
+  background: var(--color-primary, #E86A3A);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(232, 106, 58, 0.35);
+  transition: transform 0.1s;
+}
+
+.pw-cta:active {
+  transform: scale(0.98);
+}
+
+/* ── Fine print ───────────────────────────────────────────────────────────── */
+.pw-fine {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  color: #bbb;
+  text-align: center;
+  padding: 0.5rem 1.25rem 0;
+  line-height: 1.4;
+}
+
+.pw-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0.5rem 0;
+}
+
+.pw-dismiss {
+  background: none;
+  border: none;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  color: #aaa;
+  cursor: pointer;
+  padding: 0.75rem;
+}
+
+.pw-dismiss:hover { color: #888; }
+
+.pw-restore {
+  background: none;
+  border: none;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  color: #aaa;
+  cursor: pointer;
+  padding: 0.75rem;
+  text-decoration: underline;
+}
+
+.pw-restore:hover { color: #666; }
+
+.pw-restore-msg {
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  color: #888;
+  padding: 0 1.25rem 0.75rem;
+}

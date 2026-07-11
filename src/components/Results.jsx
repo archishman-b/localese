@@ -68,13 +68,8 @@ export default function Results({ session, lesson, lang, onContinue }) {
           </div>
           <div className="rstat-divider" />
           <div className="rstat">
-            <div className="rstat-val">+{session.score}</div>
-            <div className="rstat-label">XP earned</div>
-          </div>
-          <div className="rstat-divider" />
-          <div className="rstat">
-            <div className="rstat-val">{session.hearts}</div>
-            <div className="rstat-label">Hearts left</div>
+            <div className="rstat-val">{session.correctCount}/{session.totalCount}</div>
+            <div className="rstat-label">Correct</div>
           </div>
         </div>
 

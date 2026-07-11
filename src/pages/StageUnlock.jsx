@@ -60,7 +60,7 @@ export default function StageUnlock() {
           </button>
           <button
             className="su-back-btn"
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/home')}
           >
             Back to languages
           </button>

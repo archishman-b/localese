@@ -1,16 +1,20 @@
 import { useState } from 'react';
+import { useSpeech } from '../hooks/useSpeech.js';
 import './Flashcard.css';
 
-export default function Flashcard({ vocab, onComplete }) {
+export default function Flashcard({ vocab, onComplete, langId }) {
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [seen, setSeen] = useState(new Set());
+  const { speak, isSupported } = useSpeech(langId);
 
   const card = vocab[index];
   const isLast = index === vocab.length - 1;
-  const allSeen = seen.size === vocab.length;
 
-  const handleReveal = () => setRevealed(true);
+  const handleReveal = () => {
+    setRevealed(true);
+    speak(card.native);
+  };
 
   const handleNext = () => {
     setSeen(prev => new Set([...prev, index]));
@@ -36,8 +40,15 @@ export default function Flashcard({ vocab, onComplete }) {
 
       {/* Card */}
       <div className={`fc-card ${revealed ? 'fc-card-revealed' : ''}`}>
-        {/* Native script — ambient, decorative */}
-        <div className="fc-native">{card.native}</div>
+        {/* Native script — tappable to hear pronunciation */}
+        <div className="fc-native-row">
+          <div className="fc-native">{card.native}</div>
+          {isSupported && (
+            <button className="fc-speak-btn" onClick={() => speak(card.native)} title="Hear pronunciation">
+              🔊
+            </button>
+          )}
+        </div>
 
         {/* Main transliteration */}
         <div className="fc-transliteration">{card.transliteration}</div>

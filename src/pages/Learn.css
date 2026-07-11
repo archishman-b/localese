@@ -41,19 +41,21 @@
 }
 
 .back-btn {
-  color: rgba(255,255,255,0.85);
-  font-size: 14px;
-  font-weight: 700;
+  color: rgba(255,255,255,0.92);
+  font-size: 17px;
+  font-weight: 400;
   margin-bottom: var(--space-4);
-  display: inline-block;
-  background: rgba(255,255,255,0.15);
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: none;
   border: none;
-  border-radius: var(--radius-full);
-  padding: var(--space-1) var(--space-3);
+  padding: 6px 0;
   cursor: pointer;
-  transition: background var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
+  letter-spacing: -0.2px;
 }
-.back-btn:hover { background: rgba(255,255,255,0.25); }
+.back-btn:active { opacity: 0.5; }
 
 .learn-header-content { margin-bottom: var(--space-5); }
 
@@ -328,3 +330,126 @@
 }
 
 .stage-block .unit-block:first-of-type { border-top: none; }
+
+/* Flatten unit-header and lessons-list inside stage card */
+.stage-block .unit-header {
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.stage-block .lessons-list {
+  border-radius: 0;
+  border: none;
+}
+
+/* ── Premium-gated stage ─────────────────────────────────────────── */
+.stage-premium-locked {
+  border-color: #e8c56a !important;
+  background: linear-gradient(135deg, #fffdf4 0%, #fff8e7 100%) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.stage-premium-locked::before {
+  content: '✨';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 4rem;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.stage-premium-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-5);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: var(--space-4);
+  border-bottom: 1px solid rgba(232, 197, 106, 0.3);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.stage-premium-banner:active { opacity: 0.8; }
+
+.stage-premium-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex: 1;
+}
+
+.stage-premium-emoji { font-size: 28px; flex-shrink: 0; }
+
+.stage-premium-locked .stage-order-label {
+  color: #c49a2a;
+}
+
+.stage-premium-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.stage-premium-lock {
+  font-size: 1.1rem;
+}
+
+.stage-premium-unlock {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #c49a2a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Preview lessons (blurred/muted) */
+.stage-premium-preview {
+  padding: 0.5rem var(--space-5) 0.75rem;
+}
+
+.stage-preview-lesson {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.75rem;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #bbb;
+  border-radius: 8px;
+  position: relative;
+}
+
+.stage-preview-lesson span:first-child {
+  font-size: 1rem;
+  opacity: 0.4;
+}
+
+.stage-preview-lesson span:nth-child(2) {
+  flex: 1;
+  filter: blur(2.5px);
+  user-select: none;
+}
+
+.preview-locked {
+  font-size: 0.75rem;
+  opacity: 0.5;
+}
+
+.stage-preview-more {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: #ccc;
+  text-align: center;
+  padding: 0.25rem 0 0.1rem;
+}

@@ -26,12 +26,13 @@
 }
 
 .exit-btn {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  font-size: 14px;
+  background: var(--color-border);
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
   color: var(--color-ink-muted);
   cursor: pointer;
   flex-shrink: 0;
@@ -39,8 +40,9 @@
   align-items: center;
   justify-content: center;
   transition: all var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
 }
-.exit-btn:hover { background: var(--color-danger-light); color: var(--color-danger); border-color: var(--color-danger); }
+.exit-btn:active { background: #d1d5db; color: var(--color-ink); transform: scale(0.93); }
 
 .lesson-progressbar {
   flex: 1;

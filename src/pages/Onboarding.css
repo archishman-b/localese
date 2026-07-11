@@ -1,0 +1,331 @@
+/* ── Root ─────────────────────────────────────────────────────────────────── */
+.ob-root {
+  min-height: 100dvh;
+  background: var(--color-bg, #F8F7F4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1.25rem env(safe-area-inset-bottom, 1.5rem);
+  max-width: 480px;
+  margin: 0 auto;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.ob-root.ob-leaving {
+  opacity: 0;
+  transform: translateX(-18px);
+}
+
+/* ── Step dots ────────────────────────────────────────────────────────────── */
+.ob-dots {
+  display: flex;
+  gap: 6px;
+  padding-top: max(env(safe-area-inset-top, 0px), 1rem);
+  padding-bottom: 0.25rem;
+  align-self: center;
+}
+
+.ob-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ddd;
+  transition: background 0.2s, width 0.2s;
+}
+
+.ob-dot--active {
+  width: 20px;
+  border-radius: 3px;
+  background: var(--color-primary, #E86A3A);
+}
+
+.ob-dot--done {
+  background: var(--color-primary, #E86A3A);
+  opacity: 0.35;
+}
+
+/* ── Step base ────────────────────────────────────────────────────────────── */
+.ob-step {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  animation: ob-in 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes ob-in {
+  from { opacity: 0; transform: translateX(22px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Step 1: Welcome ──────────────────────────────────────────────────────── */
+.ob-welcome {
+  padding-top: 1.5rem;
+  gap: 0;
+}
+
+.ob-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.ob-logo-icon {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--color-primary, #E86A3A);
+  line-height: 1;
+}
+
+.logo-icon-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.ob-logo-text {
+  font-family: var(--font-ui);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  letter-spacing: -0.5px;
+}
+
+/* Floating scripts row */
+.ob-scripts-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.75rem;
+  opacity: 0.75;
+}
+
+/* Headline block */
+.ob-headline {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.ob-headline h1 {
+  font-family: var(--font-ui);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.5px;
+}
+
+.ob-headline h1 em {
+  font-style: normal;
+  color: var(--color-primary, #E86A3A);
+}
+
+.ob-body {
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 320px;
+}
+
+/* Pillars */
+.ob-pillars {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.ob-pillar {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  background: white;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #eee;
+}
+
+.ob-pillar-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  width: 2rem;
+  text-align: center;
+}
+
+.ob-pillar div {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.ob-pillar strong {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.ob-pillar span {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  color: #888;
+}
+
+/* CTA */
+.ob-cta {
+  width: 100%;
+  padding: 1rem;
+  background: var(--color-primary, #E86A3A);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-family: var(--font-ui);
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.2px;
+  transition: transform 0.12s, box-shadow 0.12s;
+  box-shadow: 0 4px 16px rgba(232, 106, 58, 0.35);
+}
+
+.ob-cta:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 8px rgba(232, 106, 58, 0.25);
+}
+
+.ob-fine {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: #aaa;
+  margin: 0.625rem 0 1.25rem;
+}
+
+/* ── Step 2: Language picker ──────────────────────────────────────────────── */
+.ob-lang-step {
+  padding-top: 1.25rem;
+  gap: 0;
+}
+
+.ob-lang-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.ob-lang-header h2 {
+  font-family: var(--font-ui);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  line-height: 1.25;
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.4px;
+}
+
+.ob-lang-header p {
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  color: #999;
+  margin: 0;
+}
+
+/* Language cards */
+.ob-lang-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.ob-lang-card {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  width: 100%;
+  background: white;
+  border: 2px solid #eee;
+  border-radius: 16px;
+  padding: 0.875rem 1rem;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, transform 0.12s, box-shadow 0.15s;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ob-lang-card:active {
+  transform: scale(0.98);
+}
+
+.ob-lang-card--selected {
+  border-color: var(--color-primary, #E86A3A);
+  box-shadow: 0 0 0 3px rgba(232, 106, 58, 0.15);
+  transform: scale(0.99);
+}
+
+/* Left stripe */
+.ob-lang-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  border-radius: 14px 0 0 14px;
+  background: var(--card-gradient);
+}
+
+.ob-lang-script {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--card-color);
+  flex-shrink: 0;
+  width: 4.25rem;
+  text-align: center;
+  line-height: 1;
+  padding-left: 0.25rem;
+  overflow: hidden;
+}
+
+.ob-lang-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ob-lang-name {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.ob-lang-context {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: #888;
+  line-height: 1.3;
+}
+
+.ob-lang-check {
+  font-size: 1rem;
+  color: #ccc;
+  flex-shrink: 0;
+  font-weight: 700;
+  transition: color 0.15s;
+}
+
+.ob-lang-card--selected .ob-lang-check {
+  color: var(--color-primary, #E86A3A);
+  font-size: 1.1rem;
+}

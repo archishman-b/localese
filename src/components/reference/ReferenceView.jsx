@@ -1,16 +1,28 @@
 import { useState } from 'react';
+import { useSpeech } from '../../hooks/useSpeech.js';
 import WordDetailModal from './WordDetailModal.jsx';
 import './ReferenceView.css';
 
 // ── Individual vocab card (Level 1) ─────────────────────────────────────────
-function VocabCard({ item, langData, onClick }) {
+function VocabCard({ item, langData, langId, onClick }) {
   const hasForms = item.forms && item.forms.length > 0;
+  const { speak, isSupported } = useSpeech(langId);
+
+  const handleSpeak = (e) => {
+    e.stopPropagation(); // don't open modal
+    speak(item.native);
+  };
 
   return (
     <button className="rvc-card" onClick={() => onClick(item)}>
       {/* Left panel */}
       <div className="rvc-left">
-        <div className="rvc-transliteration">{item.transliteration}</div>
+        <div className="rvc-transliteration-row">
+          <div className="rvc-transliteration">{item.transliteration}</div>
+          {isSupported && (
+            <button className="rvc-speak-btn" onClick={handleSpeak} title="Hear pronunciation">🔊</button>
+          )}
+        </div>
         <div className="rvc-native" style={{ color: langData.scriptColor }}>
           {item.native}
         </div>
@@ -35,7 +47,7 @@ function VocabCard({ item, langData, onClick }) {
 }
 
 // ── Category card stack ──────────────────────────────────────────────────────
-function CategoryCardStack({ category, langData, onBack }) {
+function CategoryCardStack({ category, langData, langId, onBack }) {
   const [activeItem, setActiveItem] = useState(null);
 
   return (
@@ -55,6 +67,7 @@ function CategoryCardStack({ category, langData, onBack }) {
             key={i}
             item={item}
             langData={langData}
+            langId={langId}
             onClick={setActiveItem}
           />
         ))}
@@ -64,6 +77,7 @@ function CategoryCardStack({ category, langData, onBack }) {
         <WordDetailModal
           item={activeItem}
           langData={langData}
+          langId={langId}
           onClose={() => setActiveItem(null)}
         />
       )}
@@ -101,6 +115,7 @@ function CategoryGrid({ langRefData, langData, onSelectCategory }) {
 // ── Main ReferenceView ───────────────────────────────────────────────────────
 export default function ReferenceView({ langRefData, langData }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const langId = langData?.id;
 
   if (!langRefData) {
     return (
@@ -115,6 +130,7 @@ export default function ReferenceView({ langRefData, langData }) {
       <CategoryCardStack
         category={selectedCategory}
         langData={langData}
+        langId={langId}
         onBack={() => setSelectedCategory(null)}
       />
     );

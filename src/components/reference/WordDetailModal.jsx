@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
+import { useSpeech } from '../../hooks/useSpeech.js';
 import './WordDetailModal.css';
 
-export default function WordDetailModal({ item, langData, onClose }) {
+export default function WordDetailModal({ item, langData, langId, onClose }) {
+  const { speak, isSupported } = useSpeech(langId);
   const sheetRef = useRef(null);
   const startY = useRef(null);
   const currentY = useRef(0);
@@ -51,8 +53,15 @@ export default function WordDetailModal({ item, langData, onClose }) {
 
         {/* Header */}
         <div className="wdm-header">
-          <div className="wdm-native" style={{ color: langData.scriptColor }}>
-            {item.native}
+          <div className="wdm-native-row">
+            <div className="wdm-native" style={{ color: langData.scriptColor }}>
+              {item.native}
+            </div>
+            {isSupported && (
+              <button className="wdm-speak-btn" onClick={() => speak(item.native)} title="Hear pronunciation">
+                🔊
+              </button>
+            )}
           </div>
           <div className="wdm-transliteration">{item.transliteration}</div>
           <div className="wdm-meaning">{item.meaning}</div>
@@ -96,8 +105,13 @@ export default function WordDetailModal({ item, langData, onClose }) {
                   <div key={i} className="wdm-example">
                     {ex.context && <div className="wdm-ex-context">{ex.context}</div>}
                     <div className="wdm-ex-phrase">{ex.phrase}</div>
-                    <div className="wdm-ex-native" style={{ color: langData.scriptColor }}>
-                      {ex.native}
+                    <div className="wdm-ex-native-row">
+                      <div className="wdm-ex-native" style={{ color: langData.scriptColor }}>
+                        {ex.native}
+                      </div>
+                      {isSupported && ex.native && (
+                        <button className="wdm-speak-btn wdm-speak-sm" onClick={() => speak(ex.native)} title="Hear phrase">🔊</button>
+                      )}
                     </div>
                     {ex.meaning && <div className="wdm-ex-meaning">{ex.meaning}</div>}
                   </div>

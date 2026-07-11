@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2732 2732" width="2732" height="2732">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#FFF3EC"/>
+      <stop offset="100%" stop-color="#F8F7F4"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="2732" height="2732" fill="url(#bg)"/>
+
+  <!-- Location pin — circle head -->
+  <circle cx="1366" cy="1180" r="280" fill="#E86A3A"/>
+
+  <!-- Location pin — teardrop body -->
+  <path d="M1366 1460 Q1200 1600 1180 1700 Q1160 1820 1366 1900 Q1572 1820 1552 1700 Q1532 1600 1366 1460Z" fill="#E86A3A"/>
+
+  <!-- Inner circle cutout (white dot in pin) -->
+  <circle cx="1366" cy="1180" r="130" fill="#FFF3EC"/>
+
+  <!-- Wordmark -->
+  <text
+    x="1366"
+    y="2060"
+    text-anchor="middle"
+    font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif"
+    font-weight="800"
+    font-size="160"
+    fill="#1A1A1A"
+    letter-spacing="12"
+  >LOCALESE</text>
+
+  <!-- Tagline -->
+  <text
+    x="1366"
+    y="2160"
+    text-anchor="middle"
+    font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif"
+    font-weight="400"
+    font-size="80"
+    fill="#888888"
+    letter-spacing="2"
+  >Learn Indian Languages</text>
+</svg>

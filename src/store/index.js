@@ -2,6 +2,13 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 const initialState = {
+  // Onboarding
+  hasOnboarded: false,
+
+  // Premium / subscription
+  // Set to true for free launch — paywall re-enabled in a future update
+  isPremium: true,
+
   // Active session
   activeLanguage: null,
 
@@ -26,6 +33,13 @@ export const useStore = create(
   persist(
     (set, get) => ({
       ...initialState,
+
+      // ── Onboarding ──────────────────────────────────────────────────────
+      completeOnboarding: (langId) => set({ hasOnboarded: true, activeLanguage: langId }),
+
+      // ── Premium ─────────────────────────────────────────────────────────
+      // Mock gate — replaced by RevenueCat purchase callback in Phase 3C
+      setPremium: (val) => set({ isPremium: val }),
 
       // ── Language selection ──────────────────────────────────────────────
       setActiveLanguage: (langId) => set({ activeLanguage: langId }),
@@ -154,8 +168,10 @@ export const useStore = create(
       resetAll: () => set(initialState),
     }),
     {
-      name: 'bhasha-store',
+      name: 'localese-store',
       partialize: (state) => ({
+        hasOnboarded: state.hasOnboarded,
+        // isPremium intentionally not persisted — always reads from initialState (true = free launch)
         activeLanguage: state.activeLanguage,
         progress: state.progress,
         xp: state.xp,

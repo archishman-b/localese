@@ -1,5 +1,5 @@
 {
-  "name": "bhasha",
+  "name": "localese",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,16 +7,31 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-audio": "node scripts/generate-audio.mjs",
+    "cap:sync": "npm run build && npx cap sync",
+    "cap:ios": "npm run cap:sync && npx cap open ios",
+    "cap:android": "npm run cap:sync && npx cap open android",
+    "cap:run:ios": "npm run cap:sync && npx cap run ios",
+    "cap:run:android": "npm run cap:sync && npx cap run android"
   },
   "dependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/app": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/ios": "^7.0.0",
+    "@capacitor/keyboard": "^7.0.0",
+    "@capacitor/splash-screen": "^7.0.0",
+    "@capacitor/status-bar": "^7.0.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.18.0",
     "zustand": "^5.0.14"
   },
   "devDependencies": {
+    "@capacitor/cli": "^7.0.0",
     "@eslint/js": "^10.0.1",
+    "@google-cloud/text-to-speech": "^6.4.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
@@ -24,6 +39,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
+    "typescript": "^6.0.3",
     "vite": "^8.0.12"
   }
 }

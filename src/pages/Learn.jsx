@@ -3,8 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { LANGUAGES } from '../data/index.js';
 import { REFERENCE_DATA } from '../data/reference/index.js';
 import { useStore } from '../store/index.js';
-import StreakBar from '../components/StreakBar/StreakBar.jsx';
 import ReferenceView from '../components/reference/ReferenceView.jsx';
+import { useSwipeBack } from '../hooks/useSwipeBack.js';
 import './Learn.css';
 
 export default function Learn() {
@@ -12,10 +12,13 @@ export default function Learn() {
   const navigate = useNavigate();
   const lang = LANGUAGES[langId];
   const [activeTab, setActiveTab] = useState('learn');
-  const { isLessonCompleted, getLangXP, getCompletedCount } = useStore();
+  const [showPaywall, setShowPaywall] = useState(false);
+  const { isLessonCompleted, getCompletedCount } = useStore();
+  const isPremium = true; // Free launch — all stages unlocked
+  useSwipeBack();
 
   if (!lang) {
-    navigate('/');
+    navigate('/home');
     return null;
   }
 
@@ -24,13 +27,8 @@ export default function Learn() {
   const completedCount = getCompletedCount(langId);
   const progress = totalLessons > 0 ? Math.round((completedCount / totalLessons) * 100) : 0;
 
-  const isStageUnlocked = (stage) => {
-    if (stage.order === 1) return true;
-    const prev = lang.stages.find(s => s.order === stage.order - 1);
-    if (!prev) return true;
-    const prevLessons = prev.units.flatMap(u => u.lessons);
-    return prevLessons.length > 0 && prevLessons.every(l => isLessonCompleted(langId, l.id));
-  };
+  // All stages unlocked for free launch
+  const isStageUnlocked = () => true;
 
   const isStageComplete = (stage) => {
     const lessons = stage.units.flatMap(u => u.lessons);
@@ -43,7 +41,12 @@ export default function Learn() {
     <div className="learn">
       {/* ── Language header ── */}
       <header className="learn-header" style={{ background: lang.gradient }}>
-        <button className="back-btn" onClick={() => navigate('/')}>← Back</button>
+        <button className="back-btn" onClick={() => navigate('/home')}>
+          <svg width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginRight: '3px'}}>
+            <path d="M9.5 1.5L1.5 9.5L9.5 17.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          Back
+        </button>
         <div className="learn-header-content">
           <div className="learn-script">{lang.nativeName}</div>
           <h1 className="learn-lang-name">{lang.name}</h1>
@@ -51,12 +54,8 @@ export default function Learn() {
         </div>
         <div className="learn-header-stats">
           <div className="hstat">
-            <span className="hstat-val">{getLangXP(langId)}</span>
-            <span className="hstat-label">XP</span>
-          </div>
-          <div className="hstat">
             <span className="hstat-val">{completedCount}/{totalLessons}</span>
-            <span className="hstat-label">lessons</span>
+            <span className="hstat-label">lessons done</span>
           </div>
         </div>
         <div className="learn-progress-bar">
@@ -83,13 +82,49 @@ export default function Learn() {
       {/* ── Learn tab ── */}
       {activeTab === 'learn' && (
         <>
-          <StreakBar />
           <main className="learn-main">
             {lang.stages.map((stage) => {
               const unlocked = isStageUnlocked(stage);
               const complete = isStageComplete(stage);
               const stageLessons = stage.units.flatMap(u => u.lessons);
               const stageCompleted = stageLessons.filter(l => isLessonCompleted(langId, l.id)).length;
+
+              // Premium gate: stages 2+ require subscription
+              const premiumGated = stage.order > 1 && !isPremium;
+
+              if (premiumGated) {
+                return (
+                  <div key={stage.id} className="stage-block stage-premium-locked">
+                    <button className="stage-premium-banner" onClick={() => setShowPaywall(true)}>
+                      <div className="stage-premium-left">
+                        <div className="stage-premium-emoji">✨</div>
+                        <div className="stage-premium-meta">
+                          <div className="stage-order-label">Stage {stage.order} · Premium</div>
+                          <h2 className="stage-title">{stage.title}</h2>
+                          <p className="stage-subtitle">{stage.subtitle}</p>
+                        </div>
+                      </div>
+                      <div className="stage-premium-cta">
+                        <span className="stage-premium-lock">🔒</span>
+                        <span className="stage-premium-unlock">Unlock</span>
+                      </div>
+                    </button>
+                    {/* Preview: first 2 lesson titles to show value */}
+                    <div className="stage-premium-preview">
+                      {stageLessons.slice(0, 3).map((l) => (
+                        <div key={l.id} className="stage-preview-lesson">
+                          <span>{l.emoji}</span>
+                          <span>{l.title}</span>
+                          <span className="preview-locked">🔒</span>
+                        </div>
+                      ))}
+                      {stageLessons.length > 3 && (
+                        <div className="stage-preview-more">+{stageLessons.length - 3} more lessons</div>
+                      )}
+                    </div>
+                  </div>
+                );
+              }
 
               return (
                 <div
@@ -143,8 +178,7 @@ export default function Learn() {
                         <div className="lessons-list">
                           {unit.lessons.map((lesson, lessonIdx) => {
                             const done = isLessonCompleted(langId, lesson.id);
-                            const prevDone = lessonIdx === 0 || isLessonCompleted(langId, unit.lessons[lessonIdx - 1].id);
-                            const locked = !done && !prevDone && unitIdx > 0;
+                            const locked = false; // All lessons unlocked for free launch
 
                             return (
                               <button
@@ -183,6 +217,11 @@ export default function Learn() {
       {/* ── Reference tab ── */}
       {activeTab === 'reference' && (
         <ReferenceView langRefData={langRefData} langData={lang} />
+      )}
+
+      {/* ── Paywall modal ── */}
+      {showPaywall && (
+        <PaywallModal langName={lang.name} onClose={() => setShowPaywall(false)} />
       )}
     </div>
   );

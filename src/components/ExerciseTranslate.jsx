@@ -1,6 +1,9 @@
+import { useSpeech } from '../hooks/useSpeech.js';
 import './Exercise.css';
 
-export default function ExerciseTranslate({ exercise, onAnswer, feedback, selectedAnswer }) {
+export default function ExerciseTranslate({ exercise, onAnswer, feedback, selectedAnswer, langId }) {
+  const { speak, isSupported } = useSpeech(langId);
+
   const handleSelect = (option) => {
     if (feedback) return;
     const isCorrect = option === exercise.correct;
@@ -14,6 +17,9 @@ export default function ExerciseTranslate({ exercise, onAnswer, feedback, select
         {exercise.nativeHint && (
           <div className="native-showcase">
             <span className="native-script">{exercise.nativeHint}</span>
+            {isSupported && (
+              <button className="native-speak-btn" onClick={() => speak(exercise.nativeHint)} title="Hear pronunciation">🔊</button>
+            )}
           </div>
         )}
         <h2 className="exercise-question">{exercise.question}</h2>

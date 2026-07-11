@@ -3,9 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bhasha — Learn Indian Languages</title>
-    <meta name="description" content="Learn Hindi, Telugu, Kannada, Bengali, and Marathi — built for professionals who've just moved cities." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Localese — Learn Indian Languages</title>
+    <meta name="description" content="Learn Hindi, Telugu, Kannada, Bengali, and Marathi — built for professionals who've just moved cities. Real phrases, native audio, 5 mins a day." />
+
+    <!-- Open Graph / Social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Localese — Learn Indian Languages" />
+    <meta property="og:description" content="Real phrases, native audio, 5 mins a day. Built for India's urban migrants." />
+    <meta property="og:image" content="/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Apple PWA meta -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Localese" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Theme colour for browser chrome -->
+    <meta name="theme-color" content="#E86A3A" />
+
+    <!-- Plausible Analytics — privacy-friendly, no cookies, GDPR-compliant -->
+    <!-- Replace YOUR_DOMAIN with your Vercel domain (e.g. bhasha.vercel.app) -->
+    <script defer data-domain="localese.app" src="https://plausible.io/js/script.js"></script>
+    <style>
+      * { -webkit-tap-highlight-color: transparent; }
+      html, body, #root { touch-action: pan-y; overscroll-behavior: none; }
+    </style>
   </head>
   <body>
     <div id="root"></div>

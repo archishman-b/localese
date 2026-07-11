@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Localese</string>
+    <string name="title_activity_main">Localese</string>
+    <string name="package_name">com.localese.app</string>
+    <string name="custom_url_scheme">com.localese.app</string>
+</resources>

@@ -78,7 +78,12 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  /* Fix 100vh in mobile browsers (iOS Safari, Android Chrome) */
+  height: -webkit-fill-available;
+}
 
 body {
   font-family: var(--font-ui);
@@ -86,22 +91,71 @@ body {
   color: var(--color-ink);
   line-height: 1.6;
   min-height: 100vh;
+  min-height: -webkit-fill-available; /* Safari/older Android */
   -webkit-font-smoothing: antialiased;
+  /* Prevent content shift from scroll overscroll on Android */
+  overscroll-behavior-y: none;
 }
 
-#root { min-height: 100vh; display: flex; flex-direction: column; }
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;   /* modern browsers — excludes mobile URL bar */
+  display: flex;
+  flex-direction: column;
+  /* Respect Dynamic Island / notch / home indicator on iOS */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
 
 button {
   font-family: var(--font-ui);
   cursor: pointer;
   border: none;
   background: none;
+  /* Remove tap flash on Android WebView */
+  -webkit-tap-highlight-color: transparent;
+  /* Prevent text selection on rapid taps */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Allow text selection in content areas */
+p, h1, h2, h3, h4, span.selectable {
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 a { text-decoration: none; color: inherit; }
+
+/* Android WebView: prevent image drag on content */
+img { -webkit-user-drag: none; user-drag: none; }
 
 .script-text {
   font-size: 0.85em;
   opacity: 0.65;
   letter-spacing: 0.02em;
+}
+
+/* iOS native feel — momentum scrolling on all scroll containers */
+.learn-main,
+.reference-scroll,
+.home-main,
+.lesson-page {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Disable long-press callout on interactive elements */
+button, a, .language-card, .lesson-row {
+  -webkit-touch-callout: none;
+}
+
+/* Active state for touchable rows — replaces hover on mobile */
+.lesson-row:active,
+.language-card:active,
+.learn-tab:active {
+  opacity: 0.7;
+  transform: scale(0.99);
+  transition: opacity 0.05s, transform 0.05s;
 }
